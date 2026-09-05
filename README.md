@@ -2,7 +2,6 @@
 
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![Conference](https://img.shields.io/badge/EFAST-2026-blue.svg)](https://efast.pust.ac.bd)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Official implementation and model architecture for the undergraduate research thesis conducted at **East Delta University** and presented at **EFAST 2026**.
 
