@@ -1,7 +1,9 @@
 # Dual-Attention GAN: A Robust Framework for Low-Light Image Enhancement using Efficient Residual Blocks
 
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Conference](https://img.shields.io/badge/EFAST-2026-blue.svg)](https://efast.pust.ac.bd)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Official implementation and model architecture for the undergraduate research thesis conducted at **East Delta University** and presented at **EFAST 2026**.
 
@@ -38,9 +40,9 @@ The generator adopts a symmetric U-Net encoder-decoder structure. The skip conne
 Each residual block decouples spatial filtering from channel mixing using Depthwise Separable Convolutions, combined with Channel-Spatial Attention and Squeeze-and-Excitation (SE) feature recalibration:
 
 <p align="center">
-  <img src="assets/efficient_residual_block.png" alt="Efficient Residual Block" width="380"/>
+  <img src="assets/efficient_residual_block.png" alt="Efficient Residual Block" width="390"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/dual_attention.png" alt="Dual Attention Mechanism" width="420"/>
+  <img src="assets/dual_attention.jpg.png" alt="Dual Attention Mechanism" width="410"/>
 </p>
 
 ### 3. Spectrally Normalized PatchGAN Discriminator
@@ -56,11 +58,11 @@ A 5-layer fully convolutional network that classifies local image patches with S
 
 The network is trained end-to-end to minimize a composite objective function:
 
-$$\mathcal{L}_{Total} = \mathcal{L}_{GAN}(G, D) + \lambda \mathcal{L}_1(G)$$
+$$\mathcal{L}_{\text{Total}} = \mathcal{L}_{\text{GAN}}(G, D) + \lambda \mathcal{L}_1(G)$$
 
-$$\mathcal{L}_{GAN}(G, D) = \mathbb{E}_{y}[\log D(y)] + \mathbb{E}_{x}[\log(1 - D(G(x)))]$$
+$$\mathcal{L}_{\text{GAN}}(G, D) = \mathbb{E}_{y}[\log D(y)] + \mathbb{E}_{x}[\log(1 - D(G(x)))]$$
 
-$$\mathcal{L}_1(G) = \mathbb{E}_{x, y}[\Vert{}y - G(x)\Vert{}_1]$$
+$$\mathcal{L}_1(G) = \mathbb{E}_{x, y}[\Vert y - G(x) \Vert_1]$$
 
 * **Reconstruction Weight:** $\lambda = 100$
 * **Optimizer:** Adam ($\beta_1 = 0.5, \beta_2 = 0.999$)
@@ -69,9 +71,19 @@ $$\mathcal{L}_1(G) = \mathbb{E}_{x, y}[\Vert{}y - G(x)\Vert{}_1]$$
 
 ---
 
+## 📂 Benchmark Dataset
+
+The model is trained and benchmarked on the **LoLI-Street Dataset**, an urban street-view low-light dataset featuring extreme illumination drops, uneven street lighting, high dynamic range shadows, and environmental glare:
+
+<p align="center">
+  <img src="assets/dataset%20image.jpg.png" alt="LoLI-Street Benchmark Samples" width="850"/>
+</p>
+
+---
+
 ## 📊 Benchmark Results on LoLI-Street Dataset
 
-Quantitative comparison on the dense low-light split of the **LoLI-Street Benchmark Dataset** (5,000 paired training subset, 500 dense validation images):
+Quantitative evaluation on the dense low-light split of the **LoLI-Street Benchmark Dataset** (5,000 paired training subset, 500 dense validation images):
 
 | Method | Venue / Year | PSNR (dB) ↑ | SSIM ↑ | LPIPS ↓ |
 | :--- | :---: | :---: | :---: | :---: |
@@ -90,17 +102,20 @@ Quantitative comparison on the dense low-light split of the **LoLI-Street Benchm
 
 ## 🖼️ Qualitative Results
 
-Visual enhancement comparison against the original ground truth high-light and low-light inputs from the LoLI-Street dataset:
+Visual enhancement comparison against ground truth clear frames and low-light degraded inputs:
 
 <p align="center">
-  <img src="assets/results_comparison.png" alt="Qualitative Visual Enhancement Results" width="800"/>
+  <img src="assets/results_comparison.png" alt="Qualitative Visual Enhancement Results" width="850"/>
 </p>
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Installation
+### 1. Environment Setup
+
+Clone the repository and install dependencies:
+
 ```bash
 git clone [https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE.git](https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE.git)
 cd Dual-Attention-GAN-LLIE
