@@ -3,3 +3,6 @@ __pycache__/
 *.pt
 *.pth
 .vscode/
+outputs/
+*.pth
+__pycache__/
