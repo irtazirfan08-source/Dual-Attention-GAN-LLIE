@@ -1,5 +1,6 @@
 # Dual-Attention GAN: A Robust Framework for Low-Light Image Enhancement using Efficient Residual Blocks
 
+[![CI](https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE/actions/workflows/ci.yml/badge.svg)](https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE/actions/workflows/ci.yml)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Conference](https://img.shields.io/badge/EFAST-2026-blue.svg)](https://efast.pust.ac.bd)
