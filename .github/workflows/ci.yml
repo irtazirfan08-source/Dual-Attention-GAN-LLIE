@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  smoke-test:
+  test-and-smoke:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,15 +15,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.11"
           cache: "pip"
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-          pip install Pillow
+          pip install numpy Pillow pytest
+
+      - name: Run PyTest architecture & metric suite
+        run: python -m pytest -v
 
       - name: Test Generator Forward Pass
-        run: |
-          python infer.py -i "assets/dataset image.jpg.png" --device cpu --no-comparison
+        run: python infer.py -i "assets/dataset image.jpg.png" --device cpu --no-comparison
