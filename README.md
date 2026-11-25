@@ -123,27 +123,3 @@ git clone https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE.git
 cd Dual-Attention-GAN-LLIE
 pip install -r requirements.txt
 ```
-
-### 2. Single-Image or Batch Inference
-
-Run zero-config inference on a low-light image or directory:
-
-```bash
-python infer.py -i "assets/dataset image.jpg.png" -w path/to/generator.pth -o outputs
-```
-
-### 3. Quantitative Evaluation (PSNR & SSIM)
-
-Evaluate enhanced outputs (`<stem>_enhanced.png`) against ground-truth reference images and export a JSON summary:
-
-```bash
-python eval_metrics.py --pred-dir outputs --gt-dir path/to/ground_truth --json-out outputs/metrics.json
-```
-
-### 4. Automated Verification Suite
-
-Run the non-invasive PyTest suite validating generator/discriminator tensor shapes, inference file outputs, and PSNR/SSIM invariants:
-
-```bash
-pytest -v
-```
