@@ -1,6 +1,7 @@
 # Dual-Attention GAN: A Robust Framework for Low-Light Image Enhancement using Efficient Residual Blocks
 
 [![CI](https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE/actions/workflows/ci.yml/badge.svg)](https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE/actions/workflows/ci.yml)
+[![PyTest](https://img.shields.io/badge/PyTest-8%20passed-brightgreen?logo=pytest&logoColor=white)](https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE/actions/workflows/ci.yml)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Conference](https://img.shields.io/badge/EFAST-2026-blue.svg)](https://efast.pust.ac.bd)
@@ -118,6 +119,31 @@ Visual enhancement comparison against ground truth clear frames and low-light de
 Clone the repository and install dependencies:
 
 ```bash
-git clone [https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE.git](https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE.git)
+git clone https://github.com/irtazirfan08-source/Dual-Attention-GAN-LLIE.git
 cd Dual-Attention-GAN-LLIE
 pip install -r requirements.txt
+```
+
+### 2. Single-Image or Batch Inference
+
+Run zero-config inference on a low-light image or directory:
+
+```bash
+python infer.py -i "assets/dataset image.jpg.png" -w path/to/generator.pth -o outputs
+```
+
+### 3. Quantitative Evaluation (PSNR & SSIM)
+
+Evaluate enhanced outputs (`<stem>_enhanced.png`) against ground-truth reference images and export a JSON summary:
+
+```bash
+python eval_metrics.py --pred-dir outputs --gt-dir path/to/ground_truth --json-out outputs/metrics.json
+```
+
+### 4. Automated Verification Suite
+
+Run the non-invasive PyTest suite validating generator/discriminator tensor shapes, inference file outputs, and PSNR/SSIM invariants:
+
+```bash
+pytest -v
+```
